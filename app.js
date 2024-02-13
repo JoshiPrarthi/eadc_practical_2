@@ -1,9 +1,15 @@
 const express = require('express');
+const path = require('path');
+
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
-    res.send('Hello, this is a code by Prarthi to test pipeline and this is the second version');
-  });
-  const port = process.env.PORT || 3000;
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`API server listening on port ${port}`);
+    console.log(`API server listening on port${port}`);
 });
